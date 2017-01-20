@@ -8,7 +8,8 @@ angular.module('demoApp', [
     'demoApp.page1Component',
     'demoApp.page2Component',
     'demoApp.postsComponent',
-    'demoApp.userComponent'
+    'demoApp.userComponent',
+    'demoApp.albumsComponent'
 ])
 
 .config(function($stateProvider, $urlRouterProvider){
@@ -43,11 +44,18 @@ angular.module('demoApp', [
         component: 'userComponent'
     }
 
+    var albumsState = {
+        name: 'albums',
+        url: '/albums',
+        component: 'albumsComponent'
+    }
+
     $stateProvider.state(homeState);
     $stateProvider.state(page1State);
     $stateProvider.state(page2State);
     $stateProvider.state(postsState);
     $stateProvider.state(userState);
+    $stateProvider.state(albumsState);
 
     $urlRouterProvider.when('', '/');
 

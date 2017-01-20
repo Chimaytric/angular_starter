@@ -1,0 +1,35 @@
+<div class="jumbotron">
+    <h1>Albums</h1>
+    <p>This page is an example of retrieving and displaying some data from a Json API.</p>
+    <p>All the sample data is provided by <a href="https://jsonplaceholder.typicode.com/">jsonplaceholder.typicode.com</a></p>
+</div>
+<div class="row" ng-init="albumsCtrl.getAlbumsData()">
+    <div class="col-md-4">
+        <div class="list-group">
+            <a href class="list-group-item" ng-repeat="album in albumsCtrl.albums" ng-click="albumsCtrl.getAlbumContent(album.id, album.title, album.userId)" ng-init="$first ? albumsCtrl.getAlbumContent(album.id, album.title, album.userId) : null" ng-class="{'active': (albumsCtrl.currentAlbum.id === album.id)}">
+                {{album.title}}
+            </a>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    {{albumsCtrl.currentAlbum.name}}
+                    <span class="pull-right">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> by <a href ui-sref="user({id: albumsCtrl.currentAlbum.user.userId})">{{albumsCtrl.currentAlbum.user.userName}}</a>
+                    </span>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3" ng-repeat="picture in albumsCtrl.currentAlbum.pictures">
+                        <a href="{{picture.url}}" class="thumbnail" title="{{picture.title}}">
+                            <img src="{{picture.thumbnailUrl}}" alt="{{picture.title}}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
