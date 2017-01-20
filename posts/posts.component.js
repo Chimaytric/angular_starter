@@ -18,11 +18,11 @@ function PostsController(postsData){
             postsData.getPost(i).then(function(post){
                 postsData.getPostAuthor(post.userId).then(function(user){
                     post.userName = user.username;
-                    postsData.getPostComments(post.id).then(function(comments){
-                        post.comments = comments;
-                        vm.data[post.id - 1] = post;
-                    });
                 });
+                postsData.getPostComments(post.id).then(function(comments){
+                    post.comments = comments;
+                });
+                vm.data[post.id - 1] = post;
             });
         }
     }
