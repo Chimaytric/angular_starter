@@ -1,0 +1,38 @@
+<div class="jumbotron">
+    <h1>Posts</h1>
+    <p>This page is an example of retrieving and displaying some data from a Json API.</p>
+    <p>All the sample data is provided by <a href="https://jsonplaceholder.typicode.com/">jsonplaceholder.typicode.com</a></p>
+</div>
+<div class="row" ng-init="postsCtrl.getPosts(false)">
+    <div class="col-md-12" ng-repeat="article in postsCtrl.data track by $index">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>{{article.title}}</h3>
+                <p>{{article.body}}</p>
+            </div>
+            <div class="panel-footer">
+                <ul class="list-unstyled list-inline">
+                    <li><a href ui-sref="user({id: article.userId})"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> By {{article.userName}}</a></li>
+                    <li><a href ng-init="isCollapsed = !isCollapsed" ng-click="isCollapsed = !isCollapsed"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{article.comments.length}} Comments</a></li>
+                </ul>
+                <div uib-collapse="isCollapsed">
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="comment in article.comments">
+                            <h4>{{comment.name}}</h4>
+                            <i>{{comment.email}}</i>
+                            <p>{{comment.body}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4" style="text-align: center;">
+        <button type="button" class="btn btn-default" ng-click="postsCtrl.getPosts(true)">
+            Load more ...
+        </button>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<br><br>

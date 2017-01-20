@@ -6,7 +6,9 @@ angular.module('demoApp', [
     'demoApp.headerComponent',
     'demoApp.homeComponent',
     'demoApp.page1Component',
-    'demoApp.page2Component'
+    'demoApp.page2Component',
+    'demoApp.postsComponent',
+    'demoApp.userComponent'
 ])
 
 .config(function($stateProvider, $urlRouterProvider){
@@ -29,9 +31,23 @@ angular.module('demoApp', [
         component: 'page2Component'
     };
 
+    var postsState = {
+        name: 'posts',
+        url: '/posts',
+        component: 'postsComponent'
+    }
+
+    var userState = {
+        name: 'user',
+        url: '/user/:id',
+        component: 'userComponent'
+    }
+
     $stateProvider.state(homeState);
     $stateProvider.state(page1State);
     $stateProvider.state(page2State);
+    $stateProvider.state(postsState);
+    $stateProvider.state(userState);
 
     $urlRouterProvider.when('', '/');
 
